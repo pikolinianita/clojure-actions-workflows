@@ -29,7 +29,7 @@ jobs:
       run: lein test
       
     - name: Run cloverage
-      run: lein cloverage --codecov
+      run: lein cloverage --codecov --coveralls
       
     - name: upload coverage artifact
       uses: actions/upload-artifact@v2
