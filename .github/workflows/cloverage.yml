@@ -41,3 +41,8 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         files: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/codecov.json
+        
+    - name: upload to coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
