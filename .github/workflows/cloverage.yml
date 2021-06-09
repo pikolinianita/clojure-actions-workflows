@@ -43,7 +43,8 @@ jobs:
         files: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/codecov.json
         
     - name: upload to coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        base-path: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/
+      run: curl -F 'json_file=/home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/coveralls.json' 'https://coveralls.io/api/v1/jobs'
+     # uses: coverallsapp/github-action@master
+     # with:
+     #   github-token: ${{ secrets.GITHUB_TOKEN }}
+     #   base-path: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/
