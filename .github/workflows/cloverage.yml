@@ -29,10 +29,14 @@ jobs:
       run: lein test
       
     - name: Run cloverage
-      run: lein cloverage
+      run: lein cloverage --codecov
       
-    - name: upload coverage
+    - name: upload coverage artifact
       uses: actions/upload-artifact@v2
       with:
        name: cloverage
        path: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/
+    
+    - name: upload to codecov
+      run: <(curl -s https://codecov.io/bash) -f target/coverage/codecov.json
+      shell: bash
