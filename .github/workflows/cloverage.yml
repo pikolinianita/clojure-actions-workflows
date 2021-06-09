@@ -38,5 +38,5 @@ jobs:
        path: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/
     
     - name: upload to codecov
-      run: <(curl -s https://codecov.io/bash) -f /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/codecov.json
+      run: curl -s https://codecov.io/bash -f /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/codecov.json
       shell: bash
