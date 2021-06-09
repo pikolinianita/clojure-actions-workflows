@@ -1,0 +1,38 @@
+name: Clojure CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/project.clj') }}
+        restore-keys: |
+           ${{ runner.os }}-maven-
+    
+    - name: Install dependencies
+      run: lein deps
+      
+    - name: Run tests
+      run: lein test
+      
+    - name: Run cloverage
+      run: lein cloverage
+      
+    - name: upload coverage
+      uses: actions/upload-artifact@v2
+      with:
+       name: cloverage
+       path: /home/runner/work/clojure-actions-workflows/clojure-actions-workflows/target/coverage/
